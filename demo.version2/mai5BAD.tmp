@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7lxqp4wfwda7"]
+
+[ext_resource type="Script" path="res://character_body_3d.gd" id="1_mcnt2"]
+[ext_resource type="Script" path="res://spring_arm_3d.gd" id="2_34qv5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a4h74"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3mjdq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pwibu"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_q72ea"]
+
+[node name="Main Root" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(60, 0, 0, 0, 1, 0, 0, 0, 60, 0, 0, 0)
+mesh = SubResource("BoxMesh_a4h74")
+skeleton = NodePath("StaticBody3D/CollisionShape3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_3mjdq")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9.53674e-07)
+script = ExtResource("1_mcnt2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_pwibu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_q72ea")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 1, 1, 5)
+script = ExtResource("2_34qv5")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0.707107, 1.22474)
+fov = 78.0
+near = 0.001
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 14, 0)
+light_energy = 0.6
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.05
+shadow_normal_bias = 1.5
+directional_shadow_mode = 1
+directional_shadow_max_distance = 30.6

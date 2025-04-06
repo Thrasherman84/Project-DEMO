@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcchxt3rkxojr"]
+
+[ext_resource type="Script" uid="uid://cbfknx86cu5fn" path="res://pause_menu.gd" id="1_hdmo1"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_hdmo1")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 514.0
+offset_top = 192.0
+offset_right = 604.0
+offset_bottom = 293.0
+grow_vertical = 0
+scale = Vector2(1.70074, 1.44)
+
+[node name="StartButton" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Continue"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer2/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer2/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer2/QuitButton" to="." method="_on_quit_button_pressed"]
