@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://m0dfoft5snt4"]
+
+[ext_resource type="Script" uid="uid://cwxdhmv4vcel4" path="res://delivery_route.gd" id="1_b2wfi"]
+
+[node name="Delivery Route" type="Node3D"]
+script = ExtResource("1_b2wfi")
