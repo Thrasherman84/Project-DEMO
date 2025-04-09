@@ -1,0 +1,12 @@
+HangingWall_FeetOnWall - Hanging braced against a Wall
+ - Feet kick against something to climb up
+ - For moving right and left, uses legs
+
+HangingWall_dangle - Dangling feet, but head is looking up 
+ - For moving right and left while hanging, but doesn't use legs
+
+---
+
+HangingPlatform - Dangling Feet, head looking forward
+ - Hanging from a "thin walkway" or a bar
+ - Kicks feet out like there is nothing to climb against
