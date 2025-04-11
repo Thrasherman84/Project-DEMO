@@ -1,0 +1,48 @@
+[gd_resource type="AnimationLibrary" load_steps=22 format=3 uid="uid://dk5mco2dna4y6"]
+
+[ext_resource type="Animation" uid="uid://dn8hfudwk4s3n" path="res://Animation/WalkingA_female.anim" id="1_llo31"]
+[ext_resource type="Animation" uid="uid://bh2t05it7ha7s" path="res://Animation/turn_left_inPlace.anim" id="2_785vm"]
+[ext_resource type="Animation" uid="uid://cqkb4mxwdfr8q" path="res://Animation/turn_right_inPlace.anim" id="3_yrwul"]
+[ext_resource type="Animation" uid="uid://bttfpm62wg0v1" path="res://Animation/Talking_gesturing.anim" id="4_jjh27"]
+[ext_resource type="Animation" uid="uid://dv7x0wkrfhsm0" path="res://Animation/Talking_headNod.anim" id="5_ydrci"]
+[ext_resource type="Animation" uid="uid://bxjum3psxnwxi" path="res://Animation/strafe_run_left.anim" id="6_6lvtw"]
+[ext_resource type="Animation" uid="uid://u4peyderdsah" path="res://Animation/strafe_run_right.anim" id="7_tc0cr"]
+[ext_resource type="Animation" uid="uid://cnk08ry7yf1qb" path="res://Animation/RunningA_female.anim" id="8_3x8vw"]
+[ext_resource type="Animation" uid="uid://cl2u33fpqopho" path="res://Animation/JumpA_female.anim" id="9_uwifp"]
+[ext_resource type="Animation" uid="uid://bvwbkydtgpgnv" path="res://Animation/IdleA_female.anim" id="10_fm4bm"]
+[ext_resource type="Animation" uid="uid://bcnnkstuyuwh7" path="res://Animation/IdleB_female.anim" id="11_uwkh8"]
+[ext_resource type="Animation" uid="uid://nc22w03diqe7" path="res://Animation/IdleC_female.anim" id="12_e5s5a"]
+[ext_resource type="Animation" uid="uid://cs4dliydtaq6i" path="res://Animation/falling_armsOutA.anim" id="13_u1qpc"]
+[ext_resource type="Animation" uid="uid://vmx5v38rmepg" path="res://Animation/Hanging_Wall/hangDangle-drop-to-standing.anim" id="14_c5b23"]
+[ext_resource type="Animation" uid="uid://bufwevvg8w8dr" path="res://Animation/Hanging_Wall/hangDangle-to-hangFeetOnWall.anim" id="15_jxgvw"]
+[ext_resource type="Animation" uid="uid://g6vphfkt7sel" path="res://Animation/Hanging_Wall/hangDangle_idle.anim" id="16_6gi8o"]
+[ext_resource type="Animation" uid="uid://b6xr6grfe84wi" path="res://Animation/Hanging_Wall/hangDangle_shimmy_left.anim" id="17_w1jsd"]
+[ext_resource type="Animation" uid="uid://b7ph5vjyg4ads" path="res://Animation/Hanging_Wall/hangDangle_shimmy_right.anim" id="18_urso6"]
+[ext_resource type="Animation" uid="uid://cmtv1smrxex06" path="res://Animation/Hanging_Wall/jumping-to-hangDangle.anim" id="19_y7ncf"]
+[ext_resource type="Animation" uid="uid://bxm8hn7xclat0" path="res://Animation/Hanging_Wall/standing-dropDown-to-hangDangle.anim" id="20_sgn5c"]
+[ext_resource type="Animation" uid="uid://cvrjex45ieff2" path="res://Animation/Hanging_Wall/standing-to-hangDangle.anim" id="21_0g7n6"]
+
+[resource]
+_data = {
+&"IdleA_female": ExtResource("10_fm4bm"),
+&"IdleB_female": ExtResource("11_uwkh8"),
+&"IdleC_female": ExtResource("12_e5s5a"),
+&"JumpA_female": ExtResource("9_uwifp"),
+&"RunningA_female": ExtResource("8_3x8vw"),
+&"Talking_gesturing": ExtResource("4_jjh27"),
+&"Talking_headNod": ExtResource("5_ydrci"),
+&"WalkingA_female": ExtResource("1_llo31"),
+&"falling_armsOutA": ExtResource("13_u1qpc"),
+&"hangDangle-drop-to-standing": ExtResource("14_c5b23"),
+&"hangDangle-to-hangFeetOnWall": ExtResource("15_jxgvw"),
+&"hangDangle_idle": ExtResource("16_6gi8o"),
+&"hangDangle_shimmy_left": ExtResource("17_w1jsd"),
+&"hangDangle_shimmy_right": ExtResource("18_urso6"),
+&"jumping-to-hangDangle": ExtResource("19_y7ncf"),
+&"standing-dropDown-to-hangDangle": ExtResource("20_sgn5c"),
+&"standing-to-hangDangle": ExtResource("21_0g7n6"),
+&"strafe_run_left": ExtResource("6_6lvtw"),
+&"strafe_run_right": ExtResource("7_tc0cr"),
+&"turn_left_inPlace": ExtResource("2_785vm"),
+&"turn_right_inPlace": ExtResource("3_yrwul")
+}

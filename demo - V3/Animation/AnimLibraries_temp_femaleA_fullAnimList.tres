@@ -1,0 +1,36 @@
+[gd_resource type="AnimationLibrary" load_steps=16 format=3 uid="uid://h7sn6ydcq08h"]
+
+[ext_resource type="Animation" uid="uid://nc22w03diqe7" path="res://Animation/IdleC_female.anim" id="1_6sdwi"]
+[ext_resource type="Animation" uid="uid://cl2u33fpqopho" path="res://Animation/JumpA_female.anim" id="2_i8k44"]
+[ext_resource type="Animation" uid="uid://cnk08ry7yf1qb" path="res://Animation/RunningA_female.anim" id="3_8ie54"]
+[ext_resource type="Animation" uid="uid://dn8hfudwk4s3n" path="res://Animation/WalkingA_female.anim" id="4_xopcv"]
+[ext_resource type="Animation" uid="uid://vmx5v38rmepg" path="res://Animation/Hanging_Wall/hangDangle-drop-to-standing.anim" id="5_hqdrq"]
+[ext_resource type="Animation" uid="uid://g6vphfkt7sel" path="res://Animation/Hanging_Wall/hangDangle_idle.anim" id="6_guic3"]
+[ext_resource type="Animation" uid="uid://b6xr6grfe84wi" path="res://Animation/Hanging_Wall/hangDangle_shimmy_left.anim" id="7_5adql"]
+[ext_resource type="Animation" uid="uid://b7ph5vjyg4ads" path="res://Animation/Hanging_Wall/hangDangle_shimmy_right.anim" id="8_6kpf7"]
+[ext_resource type="Animation" uid="uid://cmtv1smrxex06" path="res://Animation/Hanging_Wall/jumping-to-hangDangle.anim" id="9_w658x"]
+[ext_resource type="Animation" uid="uid://bxm8hn7xclat0" path="res://Animation/Hanging_Wall/standing-dropDown-to-hangDangle.anim" id="10_8g60w"]
+[ext_resource type="Animation" uid="uid://cvrjex45ieff2" path="res://Animation/Hanging_Wall/standing-to-hangDangle.anim" id="11_265w3"]
+[ext_resource type="Animation" uid="uid://bxjum3psxnwxi" path="res://Animation/strafe_run_left.anim" id="12_iftgp"]
+[ext_resource type="Animation" uid="uid://u4peyderdsah" path="res://Animation/strafe_run_right.anim" id="13_h6xih"]
+[ext_resource type="Animation" uid="uid://bh2t05it7ha7s" path="res://Animation/turn_left_inPlace.anim" id="14_udndk"]
+[ext_resource type="Animation" uid="uid://cqkb4mxwdfr8q" path="res://Animation/turn_right_inPlace.anim" id="15_ptf4r"]
+
+[resource]
+_data = {
+&"IdleC_female": ExtResource("1_6sdwi"),
+&"JumpA_female": ExtResource("2_i8k44"),
+&"RunningA_female": ExtResource("3_8ie54"),
+&"WalkingA_female": ExtResource("4_xopcv"),
+&"hangDangle-drop-to-standing": ExtResource("5_hqdrq"),
+&"hangDangle_idle": ExtResource("6_guic3"),
+&"hangDangle_shimmy_left": ExtResource("7_5adql"),
+&"hangDangle_shimmy_right": ExtResource("8_6kpf7"),
+&"jumping-to-hangDangle": ExtResource("9_w658x"),
+&"standing-dropDown-to-hangDangle": ExtResource("10_8g60w"),
+&"standing-to-hangDangle": ExtResource("11_265w3"),
+&"strafe_run_left": ExtResource("12_iftgp"),
+&"strafe_run_right": ExtResource("13_h6xih"),
+&"turn_left_inPlace": ExtResource("14_udndk"),
+&"turn_right_inPlace": ExtResource("15_ptf4r")
+}
