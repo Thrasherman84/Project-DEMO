@@ -4,7 +4,6 @@ extends CharacterBody3D
 @onready var spring_arm := $Pivot/SpringArm3D
 
 @export var animation_tree := AnimationTree
-@export var animation_player := AnimationPlayer
 
 @onready var main_scene := get_tree().root.get_child(0)
 
