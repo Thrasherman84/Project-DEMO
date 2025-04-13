@@ -1,9 +1,13 @@
 extends Node3D
 
+signal delivery_started
 signal delivery_finished
 
 @export
 var player : CharacterBody3D #RigidBody3D
+
+@export
+var route_id = 0
 
 @export
 var path_checkpoints : Array[Area3D]
@@ -31,6 +35,9 @@ func _ready() -> void:
 func checkpointReached(bodyEntered: Node3D):
 	#print( "checkpoint" )
 	if(bodyEntered == player):
+		if ( current_checkpoint_id==0 ):
+			delivery_started.emit( route_id )
+		
 		path_checkpoints[current_checkpoint_id].body_entered.disconnect(checkpointReached.bind())
 		selectNextCheckpoint()
 
@@ -41,5 +48,5 @@ func selectNextCheckpoint():
 		next_checkpoint = path_checkpoints[current_checkpoint_id]
 		path_checkpoints[current_checkpoint_id].body_entered.connect(checkpointReached.bind())
 	else:
-		delivery_finished.emit()
+		delivery_finished.emit( route_id )
 		#print("delivery finished")

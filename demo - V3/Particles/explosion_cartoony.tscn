@@ -95,7 +95,7 @@ script = ExtResource("1_87p7t")
 [node name="Debris" type="GPUParticles3D" parent="."]
 emitting = false
 amount = 23
-lifetime = 0.5
+lifetime = 0.45
 one_shot = true
 explosiveness = 1.0
 randomness = 0.5
@@ -106,7 +106,7 @@ draw_pass_1 = SubResource("CylinderMesh_e1b28")
 [node name="puff" type="GPUParticles3D" parent="."]
 emitting = false
 amount = 5
-lifetime = 0.7
+lifetime = 0.75
 one_shot = true
 speed_scale = 0.8
 explosiveness = 0.89

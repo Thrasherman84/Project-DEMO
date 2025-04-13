@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://4831mlsq35dq"]
+
+[ext_resource type="Script" uid="uid://cng1kjaungrwk" path="res://Scenes/tests/test_launcher.gd" id="1_boh5j"]
+[ext_resource type="PackedScene" uid="uid://cwq01duc05s6m" path="res://Objects/Projectiles/granade.tscn" id="2_sohj3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g22ee"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jg02s"]
+
+[node name="ParticleTests" type="Node3D"]
+
+[node name="NadeLauncher" type="Node3D" parent="."]
+transform = Transform3D(0.498936, -0.448288, 0.741687, 0.0171843, 0.86077, 0.508704, -0.866468, -0.241066, 0.437173, 6.36577, 5.58435, 0)
+
+[node name="body" type="MeshInstance3D" parent="NadeLauncher"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.441744)
+mesh = SubResource("BoxMesh_g22ee")
+
+[node name="barrel" type="MeshInstance3D" parent="NadeLauncher"]
+transform = Transform3D(1, 0, 0, 0, -2.63832e-08, -1, 0, 0.603577, -4.37114e-08, 0, 0, 0.436555)
+mesh = SubResource("CylinderMesh_jg02s")
+
+[node name="ThrowButton" type="Button" parent="."]
+unique_name_in_owner = true
+offset_right = 282.0
+offset_bottom = 93.0
+action_mode = 0
+text = "Lauch!"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_boh5j")
+grenade_scene = ExtResource("2_sohj3")
+player_node_path = NodePath("../NadeLauncher")
