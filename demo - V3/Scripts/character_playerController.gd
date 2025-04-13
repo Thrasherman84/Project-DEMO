@@ -4,7 +4,9 @@ extends CharacterBody3D
 @onready var spring_arm := $Pivot/SpringArm3D
 
 @export var animation_tree := AnimationTree
+@export var animation_player := AnimationPlayer
 
+@onready var main_scene := get_tree().root.get_child(0)
 
 # Apply constant offset to pivot de-coupled position
 @export var pivot_offset := Vector3(0.0, 1.7, 0.0)  # Default offset (y=1.7 places pivot at head level)
@@ -17,6 +19,7 @@ const SPEED_RUN = 10.0
 const GRAVITY = -9.8
 @export var tilt_limit := deg_to_rad(75)
 
+var is_paused := false
 var pitch := 0.0
 var rotation_speed := 5.0  # Adjust this to make the character turn faster/slower
 var is_jumping = false
@@ -28,6 +31,9 @@ func _ready():
 	# This makes the pivot (and thus the camera) independent.
 	pivot.top_level = true
 	animation_tree.active = true
+	
+	main_scene.connect( "paused_state", Callable( self, "_on_paused_state") )
+	%PauseMenu.connect( "state_change", Callable(self, "_on_paused_state"))
 
 # For movement -to- BlendSpace2D blend_position vec2
 #   X axis = left/right (-1 to 1)
@@ -43,27 +49,15 @@ func update_animation_parameters():
 		animation_tree["parameters/StateMachine/conditions/is_idle"] = false
 		animation_tree["parameters/StateMachine/conditions/is_moving"] = true
 		
-	#if (is_running):
-	#	animation_tree["parameters/walkRun/blend_position"] = 1.0
-	#else:
-	#	animation_tree["parameters/walkRun/blend_position"] = 0.0
-
-
-	# Get normalized movement direction
+	# User Input
 	var input_vec = Input.get_vector("Left", "Right", "Forward", "Backward")
 	
 
-	# Option 1: Basic implementation
-	animation_tree["parameters/StateMachine/movementBlender/blend_position"] = Vector2(input_vec.x, input_vec.y)
-
-	# Option 2: Including running as intensity
 	var speed_factor = 1.0 if is_running else 0.5
 	if input_vec.length() > 0:
 		animation_tree["parameters/StateMachine/movementBlender/blend_position"] = input_vec * speed_factor 
 	else:
 		animation_tree["parameters/StateMachine/movementBlender/blend_position"] = Vector2.ZERO 
-
-
 
 
 	if Input.is_action_just_pressed("Jump"):
@@ -80,9 +74,13 @@ func update_animation_parameters():
 	###
 
 func _process(delta):
+	if( is_paused ):
+		return
 	update_animation_parameters()
 
 func _unhandled_input(event: InputEvent) -> void:
+	if( is_paused ):
+		return
 	if event is InputEventMouseMotion:
 		# Mouse controls only the pivot (camera) rotation.
 		pivot.rotate_y(-event.relative.x * mouse_sensitivity)
@@ -90,6 +88,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		spring_arm.rotation.x = pitch
 
 func _physics_process(delta: float) -> void:
+	if( is_paused ):
+		return
 
 	var current_basis = pivot.global_transform.basis
 
@@ -97,7 +97,6 @@ func _physics_process(delta: float) -> void:
 	var offset_position = global_transform.origin + pivot_offset
 	pivot.global_transform = Transform3D(current_basis, offset_position)
 	
-
 
 
 	# Apply gravity
@@ -132,3 +131,16 @@ func _physics_process(delta: float) -> void:
 		velocity.y = jump_velocity
 				
 	move_and_slide()
+
+
+func _on_paused_state( state:bool ):
+	is_paused = state
+	if( is_paused ):
+		animation_tree.active = false
+		#animation_player.pause()
+		#animation_player.playback_speed = 0.0
+	else:
+		animation_tree.active = true
+		#animation_player.play()
+		#animation_player.playback_speed = 1.0
+		

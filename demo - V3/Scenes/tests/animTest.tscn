@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bat03sme7hgkn" path="res://Scripts/main_root.gd" id="1_pxep5"]
 [ext_resource type="Material" uid="uid://dqswpeiqmp3bu" path="res://Materials/main_root.tres" id="2_lcwji"]
-[ext_resource type="Script" uid="uid://dcyuftn6dau2b" path="res://Scripts/character_body_animTest_trancor.gd" id="3_lvcck"]
+[ext_resource type="Script" uid="uid://dcyuftn6dau2b" path="res://Scripts/character_playerController.gd" id="3_lvcck"]
 [ext_resource type="Script" uid="uid://kpyjqe6dl1kh" path="res://Scripts/camera_droneCam.gd" id="4_s8b87"]
 [ext_resource type="PackedScene" uid="uid://jpgcqqswv7rl" path="res://Characters/char_female_a_01.tscn" id="5_lvcck"]
 [ext_resource type="PackedScene" uid="uid://dcchxt3rkxojr" path="res://GUI/pause_screen.tscn" id="7_8ggfq"]

@@ -1,8 +1,11 @@
 extends Node3D
 
+signal paused_state
+
 var pause_menu
 var cursor_visible := false
 var is_paused := false
+
 
 @export var debug_mode := false
 
@@ -20,8 +23,7 @@ func _ready():
 	
 	$PauseMenu.connect( "state_change", Callable(self, "_on_pause_state_change"))
 
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)  # optional, to make sure it starts hidden
-	$PauseMenu.hide()
+	runScene()
 	
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):  # Escape
@@ -50,6 +52,8 @@ func toggle_pause():
 		pauseScene()
 	else:
 		runScene()
+		
+	paused_state.emit( is_paused )
 	
 # -- -- --
 
