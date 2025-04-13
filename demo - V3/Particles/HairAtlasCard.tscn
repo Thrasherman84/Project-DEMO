@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://na2qdhboa6gs"]
+
+[ext_resource type="PackedScene" uid="uid://dhfoxpb6cwd4x" path="res://Particles/hairCard_atlas_3x3.fbx" id="1_3qpu1"]
+
+[node name="HairAtlasCard" type="Node3D"]
+
+[node name="hairCard_atlas_3x3" parent="." instance=ExtResource("1_3qpu1")]

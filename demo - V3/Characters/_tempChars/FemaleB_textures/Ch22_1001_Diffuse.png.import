@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca7ov6nee3oeu"
-path.s3tc="res://.godot/imported/hairSwoop_atlas_512.png-fea00c6f36e9dd5698225e28cd2e87c1.s3tc.ctex"
+uid="uid://cnw35dk5frprc"
+path.s3tc="res://.godot/imported/Ch22_1001_Diffuse.png-b64f652cc6a6f7b8d10b9992270fd5f9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/Particles/hairSwoop_atlas_512.png"
-dest_files=["res://.godot/imported/hairSwoop_atlas_512.png-fea00c6f36e9dd5698225e28cd2e87c1.s3tc.ctex"]
+source_file="res://Characters/_tempChars/FemaleB_textures/Ch22_1001_Diffuse.png"
+dest_files=["res://.godot/imported/Ch22_1001_Diffuse.png-b64f652cc6a6f7b8d10b9992270fd5f9.s3tc.ctex"]
 
 [params]
 

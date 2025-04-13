@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn03tf367xnfv"]
+
+[ext_resource type="PackedScene" uid="uid://cnl40cfkrcs4s" path="res://Objects/Buildings/_SourceFBXs/building_clusterB_tall.fbx" id="1_qn33s"]
+
+[node name="building_clusterB_tall" instance=ExtResource("1_qn33s")]

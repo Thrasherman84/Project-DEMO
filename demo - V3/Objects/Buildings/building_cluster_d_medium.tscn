@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwcut0pcpexai"]
+
+[ext_resource type="PackedScene" uid="uid://bvvsersquinob" path="res://Objects/Buildings/_SourceFBXs/building_clusterD_medium.fbx" id="1_lqfc5"]
+
+[node name="building_clusterD_medium" instance=ExtResource("1_lqfc5")]

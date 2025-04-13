@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca7ov6nee3oeu"
-path.s3tc="res://.godot/imported/hairSwoop_atlas_512.png-fea00c6f36e9dd5698225e28cd2e87c1.s3tc.ctex"
+uid="uid://bjdb6ebwxxd6k"
+path.s3tc="res://.godot/imported/Remy_Hair_Diffuse.png-c589260151b5bff77d7c49af6d79434c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/Particles/hairSwoop_atlas_512.png"
-dest_files=["res://.godot/imported/hairSwoop_atlas_512.png-fea00c6f36e9dd5698225e28cd2e87c1.s3tc.ctex"]
+source_file="res://Characters/_tempChars/MaleA_textures/Remy_Hair_Diffuse.png"
+dest_files=["res://.godot/imported/Remy_Hair_Diffuse.png-c589260151b5bff77d7c49af6d79434c.s3tc.ctex"]
 
 [params]
 

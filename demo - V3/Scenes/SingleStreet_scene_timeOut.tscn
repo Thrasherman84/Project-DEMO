@@ -1,0 +1,156 @@
+[gd_scene load_steps=13 format=3 uid="uid://0rs3b7i7kwwq"]
+
+[ext_resource type="Script" uid="uid://o48xowwl48tf" path="res://Scripts/scene_base.gd" id="1_lf4oi"]
+[ext_resource type="PackedScene" uid="uid://m0dfoft5snt4" path="res://Scenes/tests/delivery_route.tscn" id="1_m6mcv"]
+[ext_resource type="Script" uid="uid://dcyuftn6dau2b" path="res://Scripts/character_body_animTest_trancor.gd" id="2_lf4oi"]
+[ext_resource type="PackedScene" uid="uid://jpgcqqswv7rl" path="res://Characters/char_female_a_01.tscn" id="4_307ux"]
+[ext_resource type="PackedScene" uid="uid://eoyg5acog7w3" path="res://Scenes/SingleStreet_env.tscn" id="5_seook"]
+[ext_resource type="PackedScene" uid="uid://dcchxt3rkxojr" path="res://GUI/pause_screen.tscn" id="6_40heh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_slmxa"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.580392)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p1iqb"]
+size = Vector3(0.475708, 1, 0.587402)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulhb0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hmugy"]
+sky_top_color = Color(0.510505, 0.583795, 0.718435, 1)
+sky_horizon_color = Color(0.59694, 0.791867, 0.847104, 1)
+ground_bottom_color = Color(0.191498, 0.169159, 0.162641, 1)
+sun_angle_max = 38.89
+
+[sub_resource type="Sky" id="Sky_sm51x"]
+sky_material = SubResource("ProceduralSkyMaterial_hmugy")
+
+[sub_resource type="Environment" id="Environment_uymxc"]
+background_mode = 2
+sky = SubResource("Sky_sm51x")
+ambient_light_source = 3
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0047
+volumetric_fog_albedo = Color(0.791333, 0.842791, 0.888964, 1)
+volumetric_fog_emission = Color(1, 1, 1, 1)
+volumetric_fog_length = 37.75
+
+[node name="SingleStreetTimeOut" type="Node3D"]
+script = ExtResource("1_lf4oi")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Delivery Route" parent="." node_paths=PackedStringArray("player", "path_checkpoints") instance=ExtResource("1_m6mcv")]
+transform = Transform3D(-0.99992, 0, -0.0126708, 0, 1, 0, 0.0126708, 0, -0.99992, 0, 0, 0)
+player = NodePath("../Player")
+path_checkpoints = [NodePath("StartArea"), NodePath("FinishArea")]
+debug_mode = true
+debug_material = SubResource("StandardMaterial3D_slmxa")
+
+[node name="StartArea" type="Area3D" parent="Delivery Route"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26334, 0, 0.0286807)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Delivery Route/StartArea"]
+transform = Transform3D(-5.34907, 0, -19.4685, 0, 20.19, 0, 19.4685, 0, -5.34907, -1.71468, 1.54849, -57.7772)
+shape = SubResource("BoxShape3D_p1iqb")
+
+[node name="FinishArea" type="Area3D" parent="Delivery Route"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.51297, 0, 7.59772)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Delivery Route/FinishArea"]
+transform = Transform3D(23.6043, 0, -2.8853, 0, 23.78, 0, 2.8853, 0, 23.6043, 28.1458, 0, 4.59874)
+shape = SubResource("BoxShape3D_p1iqb")
+
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("animation_tree")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.12463, 0.982508, 84.1285)
+script = ExtResource("2_lf4oi")
+animation_tree = NodePath("Char_FemaleA_01/AnimationTree")
+jump_velocity = 6
+
+[node name="Pivot" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38993, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Player/Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0308523, 0.756306, 0.696159)
+collision_mask = 4
+spring_length = 2.715
+margin = 0.075
+
+[node name="Camera3D" type="Camera3D" parent="Player/Pivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.93868, 0.34479, 0, -0.34479, 0.93868, -0.0610323, 1.01424, 2.67052)
+fov = 54.6342
+near = 0.001
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00078, 0)
+shape = SubResource("CapsuleShape3D_ulhb0")
+
+[node name="Char_FemaleA_01" parent="Player" instance=ExtResource("4_307ux")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="GeneralSkeleton" parent="Player/Char_FemaleA_01" index="0"]
+bones/1/rotation = Quaternion(0.00624549, -0.0117889, 0.0256516, 0.999582)
+bones/2/rotation = Quaternion(-0.0024259, 0.000617364, 0.0517826, 0.998655)
+bones/3/rotation = Quaternion(-0.00226164, 0.00606076, 0.0509456, 0.99868)
+bones/4/rotation = Quaternion(0.00838716, -0.00259983, -0.0189548, 0.999782)
+bones/5/rotation = Quaternion(0.0127053, 0.00483848, -0.0704059, 0.997426)
+bones/8/rotation = Quaternion(0.396895, 0.551149, 0.557739, -0.477113)
+bones/9/rotation = Quaternion(-0.0463522, 0.683046, -0.728772, -0.0137881)
+bones/11/rotation = Quaternion(0.050666, 0.514214, -0.0697214, 0.853321)
+bones/12/rotation = Quaternion(-0.260101, 0.776071, 0.213581, 0.533333)
+bones/13/rotation = Quaternion(0.261598, -0.0179478, 0.0182179, 0.964838)
+bones/14/rotation = Quaternion(0.0596919, 0.00687544, 0.012359, 0.998117)
+bones/16/rotation = Quaternion(0.0772195, -0.000140681, -0.0417741, 0.996139)
+bones/17/rotation = Quaternion(0.18725, -0.00113772, -0.0257317, 0.981975)
+bones/18/rotation = Quaternion(0.0976163, -0.000347367, -0.00803844, 0.995192)
+bones/20/rotation = Quaternion(0.145635, -0.00295787, -0.0776431, 0.986282)
+bones/21/rotation = Quaternion(0.295323, -0.00240671, -0.0364812, 0.954698)
+bones/22/rotation = Quaternion(0.115768, 9.6198e-05, -0.013972, 0.993178)
+bones/24/rotation = Quaternion(0.207217, -0.00183281, -0.10186, 0.972976)
+bones/25/rotation = Quaternion(0.321708, 0.00220702, -0.0348657, 0.946194)
+bones/26/rotation = Quaternion(0.145606, 0.0017807, -0.0143716, 0.989237)
+bones/28/rotation = Quaternion(0.285615, 0.00418044, -0.145066, 0.947292)
+bones/29/rotation = Quaternion(0.366316, -0.00257038, -0.0353411, 0.929816)
+bones/30/rotation = Quaternion(0.155734, -0.000235111, -0.0230474, 0.98753)
+bones/32/rotation = Quaternion(0.445013, -0.497208, -0.52347, -0.529836)
+bones/33/rotation = Quaternion(-0.0143073, 0.786554, -0.617356, -0.00029786)
+bones/35/rotation = Quaternion(0.0192267, -0.626904, 0.116383, 0.770115)
+bones/36/rotation = Quaternion(-0.260102, -0.776071, -0.213581, 0.533333)
+bones/37/rotation = Quaternion(0.261563, 0.0179605, -0.0182146, 0.964847)
+bones/38/rotation = Quaternion(0.0520974, -0.00191259, -0.0171523, 0.998493)
+bones/40/rotation = Quaternion(0.0772287, 0.000140908, 0.0417749, 0.996138)
+bones/41/rotation = Quaternion(0.187258, 0.00113751, 0.0257323, 0.981973)
+bones/42/rotation = Quaternion(0.129232, 0.00199275, 0.00256873, 0.991609)
+bones/44/rotation = Quaternion(0.145392, 0.0029497, 0.0776202, 0.98632)
+bones/45/rotation = Quaternion(0.295324, 0.00240629, 0.0364808, 0.954697)
+bones/46/rotation = Quaternion(0.146942, 0.000175068, 0.0157252, 0.98902)
+bones/48/rotation = Quaternion(0.207266, 0.00183291, 0.101865, 0.972965)
+bones/49/rotation = Quaternion(0.321708, -0.00220732, 0.0348651, 0.946194)
+bones/50/rotation = Quaternion(0.132494, 0.00117222, -0.00280304, 0.991179)
+bones/52/rotation = Quaternion(0.285616, -0.00418087, 0.145066, 0.947292)
+bones/53/rotation = Quaternion(0.366316, 0.0025699, 0.0353406, 0.929816)
+bones/54/rotation = Quaternion(0.169676, 0.00604092, -0.0014366, 0.98548)
+bones/56/rotation = Quaternion(0.114019, 0.163599, 0.972143, -0.12318)
+bones/57/rotation = Quaternion(-0.0375595, 0.973607, -0.211474, 0.0771821)
+bones/58/rotation = Quaternion(-0.0496668, 0.679161, -0.727066, 0.0874557)
+bones/61/rotation = Quaternion(-0.0411185, 0.0129894, 0.9945, -0.0954501)
+bones/62/rotation = Quaternion(-0.0228118, 0.993542, -0.100742, -0.0469681)
+bones/63/rotation = Quaternion(-0.0466757, 0.642856, -0.762872, 0.0508342)
+bones/64/rotation = Quaternion(7.09568e-08, 0.999987, 0.00501659, 7.92814e-10)
+
+[node name="hair_geo" parent="Player/Char_FemaleA_01/GeneralSkeleton" index="0"]
+transform = Transform3D(0.999562, 0.0170253, 0.0241914, -0.0163771, 0.999508, -0.0267451, -0.0246349, 0.0263372, 0.99935, -0.0498528, -0.0272857, -0.0328286)
+
+[node name="AnimationTree" parent="Player/Char_FemaleA_01" index="1"]
+parameters/StateMachine/movementBlender/blend_position = Vector2(0, 0)
+
+[node name="SingleStreetTimeOut" parent="." instance=ExtResource("5_seook")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.274028, 0, 2.05451)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uymxc")
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_40heh")]
+starting_scene = "res://Scenes/SingleStreet_scene_timeOut.tscn"
+
+[editable path="Player/Char_FemaleA_01"]
