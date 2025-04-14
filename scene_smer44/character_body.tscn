@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://gblg1tbt23xt"]
+[gd_scene load_steps=7 format=3 uid="uid://gblg1tbt23xt"]
 
 [ext_resource type="Script" uid="uid://bt12siw1oxcdw" path="res://character_body.gd" id="1_4joeo"]
 [ext_resource type="PackedScene" uid="uid://dxtyt340p0fld" path="res://x_bot.tscn" id="2_l2fv6"]
@@ -10,7 +10,12 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4joeo"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l2fv6"]
+radius = 0.41888
+height = 0.898706
+
 [node name="CharacterBody" type="RigidBody3D" node_paths=PackedStringArray("xbot")]
+collision_layer = 2147483648
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -42,10 +47,23 @@ skeleton = NodePath("../..")
 [node name="X Bot" parent="CharacterVisuals" instance=ExtResource("2_l2fv6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.958754, 0)
 
-[node name="DashTimer" type="Timer" parent="."]
+[node name="DashResetTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
+[node name="DashAnimationTimer" type="Timer" parent="."]
+wait_time = 0.34
+one_shot = true
+
+[node name="FloorDetectorArea3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorDetectorArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.68975, 0)
+shape = SubResource("CapsuleShape3D_l2fv6")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
-[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DashResetTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DashAnimationTimer" to="." method="_on_dash_animation_timer_timeout"]
+[connection signal="body_entered" from="FloorDetectorArea3D" to="." method="_on_floor_detector_area_3d_body_entered"]
+[connection signal="body_exited" from="FloorDetectorArea3D" to="." method="_on_floor_detector_area_3d_body_exited"]

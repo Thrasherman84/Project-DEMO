@@ -18,9 +18,9 @@ var double_jump_enabled = true
 var dash_enabled = true
 var ducking = false
 
-var inertion_speed = 1200
+var inertion_speed = 800
 var inertion_ducking_speed = inertion_speed * 10
-var dash_speed = 50
+var dash_speed = 25
 var input : Vector3
 
 var clamp_vertical_rotation_rad = 1.3
@@ -32,8 +32,15 @@ var character_minimum_speed_for_facing_squared = 1
 var normal_damp = 0.0
 var ducking_damp = 10.0
 
+var is_pushing = false
+var is_falling = false 
+var is_jump_start = false 
+var is_dashing = false
+
 @export var xbot: Node 
 var atree : AnimationTree
+
+@onready  var floor_detector : Area3D = $FloorDetectorArea3D
 
 func _ready() -> void:
 	#set mouse to be invisible and centered:
@@ -42,6 +49,44 @@ func _ready() -> void:
 	atree = $"CharacterVisuals/X Bot/AnimationTree"
 	atree.active = true
 	#print(atree)
+	
+	
+
+func update_animation_parameters(animation_tree : AnimationTree):
+	#the top priority action is when character is falling : 
+	if is_dashing:
+		animation_tree["parameters/conditions/isPushing"] = false
+		animation_tree["parameters/conditions/isIdle"] = false
+		#animation_tree["parameters/conditions/isJumpEnd"] = false
+		animation_tree["parameters/conditions/isJumpStart"] = false
+		animation_tree["parameters/conditions/isFalling"] = false
+		animation_tree["parameters/conditions/isDashing"] = true 
+
+		
+	elif floors_contacts == 0 && linear_velocity.y < -2.0:
+		#is_falling = true
+		animation_tree["parameters/conditions/isPushing"] = false
+		animation_tree["parameters/conditions/isIdle"] = false
+		#animation_tree["parameters/conditions/isJumpEnd"] = false
+		animation_tree["parameters/conditions/isJumpStart"] = false
+		animation_tree["parameters/conditions/isDashing"] = false
+		animation_tree["parameters/conditions/isFalling"] = true
+	elif is_jump_start:#then you check, if currently is jump start:
+		animation_tree["parameters/conditions/isPushing"] = false
+		animation_tree["parameters/conditions/isIdle"] = false		
+		animation_tree["parameters/conditions/isDashing"] = false	
+		animation_tree["parameters/conditions/isJumpStart"] = true
+		animation_tree["parameters/conditions/isFalling"] = false 
+	else:
+		animation_tree["parameters/conditions/isJumpStart"] = false
+		animation_tree["parameters/conditions/isFalling"] = false 	
+		animation_tree["parameters/conditions/isDashing"] = false			
+		animation_tree["parameters/conditions/isPushing"] = is_pushing
+		animation_tree["parameters/conditions/isIdle"] = ! is_pushing
+	
+
+
+		
 	
 
 
@@ -66,6 +111,7 @@ func _process(delta: float) -> void:
 	update_input_dash()
 	update_input_jump()
 	handle_ducking_lean(delta)
+	
 	update_input_exit()
 	
 # is called, if this event is not handled by another script:
@@ -110,12 +156,24 @@ func update_input_dash():
 	if dash_enabled and Input.is_action_just_pressed("dash"):
 		linear_velocity = input * dash_speed
 		dash_enabled = false 
-		$DashTimer.start()
+		is_dashing = true 
+		$DashResetTimer.start()
+		$DashAnimationTimer.start()
 
 func update_input_horizontal_relative_to_camera(delta: float):	
 	#like that, it adds absolute movement:
 	horizontal_input = Input.get_vector("right", "left",  "backward", "forward")	
+	
+	# i got rapid change is_pushing: true-> false 
+	#because of floor contacts?
+	var new_is_pushing = horizontal_input.length() > 0 
+	if new_is_pushing != is_pushing:		
+		is_pushing = new_is_pushing
+		print("is_pushing changed to" , is_pushing)
+	update_animation_parameters(atree)
+	
 	if floors_contacts > 0 and horizontal_input.length() > 0:
+
 		input = Vector3.ZERO
 		input.x = horizontal_input.x 
 		input.z = horizontal_input.y 
@@ -129,6 +187,8 @@ func update_input_horizontal_relative_to_camera(delta: float):
 		#this works not smoothly:
 		#$CharacterVisuals.look_at($CharacterVisuals.global_position-input)
 		face_character_by_speed(delta)
+	else:
+		pass
 	
 func face_character_by_input(delta:float):
 	"""
@@ -161,9 +221,11 @@ func update_input_jump():
 	if Input.is_action_just_pressed("jump"):
 		if floors_contacts > 0:
 			apply_central_force(Vector3.UP  * jump_force)	
+			is_jump_start = true
 		elif double_jump_enabled:
 			double_jump_enabled = false 
 			apply_central_force(Vector3.UP  * jump_force)	
+			is_jump_start = true
 			
 
 func update_input_duck():
@@ -208,19 +270,34 @@ func update_input_exit():
 
 # i guess this will support contacts with multiple floors.
 #you may jump if floors_contacts > 0
+
+"""
 func _on_body_entered(body: Node) -> void:
 	#print("_on_body_entered: body:", body)
 	if body.is_in_group("Floor"):
 		
 		floors_contacts+=1
 		double_jump_enabled = true 
+		is_jump_start = false
 		#print("_on_body_entered: floor contacts increased:", floors_contacts)
 
 func _on_body_exited(body: Node) -> void:
 	if body.is_in_group("Floor"):
 		floors_contacts-=1
+"""
 		
+func _on_floor_detector_area_3d_body_entered(body: Node3D) -> void:
+	floors_contacts+=1
+	double_jump_enabled = true 
+	is_jump_start = false
+	print("floors_contacts entered : " , floors_contacts)
 
+
+func _on_floor_detector_area_3d_body_exited(body: Node3D) -> void:
+	floors_contacts-=1
+	print("floors_contacts exited : " , floors_contacts)
+	
+	
 
 func _on_dash_timer_timeout() -> void:
 	#print("_on_dash_timer_timeout:")
@@ -248,3 +325,11 @@ func look_at_node(source: Node2D, target: Node2D, delta: float):
 
 """
 	
+
+
+
+	pass # Replace with function body.
+
+
+func _on_dash_animation_timer_timeout() -> void:
+	is_dashing = false 

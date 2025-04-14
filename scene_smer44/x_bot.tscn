@@ -1,6 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxtyt340p0fld"]
+[gd_scene load_steps=37 format=3 uid="uid://dxtyt340p0fld"]
 
 [ext_resource type="PackedScene" uid="uid://hn0ius1c6yfb" path="res://X Bot.fbx" id="1_s8sjr"]
+[ext_resource type="Animation" uid="uid://cr2gs8dwfefjd" path="res://animations/run_to_dive.res" id="2_xd2os"]
+[ext_resource type="Animation" uid="uid://clqd2f1tkw8kv" path="res://animations/jumping_up.anim" id="3_3ad3n"]
+[ext_resource type="Animation" uid="uid://c7dr1kpxwvbxa" path="res://animations/skateboarding_idle.anim" id="4_tyqtd"]
+[ext_resource type="Animation" uid="uid://b0r36c1nwla6i" path="res://animations/skateboarding_push.anim" id="5_cfulf"]
+[ext_resource type="Animation" uid="uid://cge4b7b2pm6fl" path="res://animations/flying.anim" id="6_tyqtd"]
 
 [sub_resource type="Animation" id="Animation_s8sjr"]
 resource_name = "Take 001"
@@ -256,7 +261,7 @@ resource_name = "mixamo_com"
 length = 0.7
 tracks/0/type = "position_3d"
 tracks/0/imported = true
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("%GeneralSkeleton:Hips")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -809,31 +814,138 @@ tracks/34/keys = PackedFloat32Array(0, 1, 1.95012e-07, 2.97882e-08, -1.25355e-07
 _data = {
 &"Take 001": SubResource("Animation_s8sjr"),
 &"falling_idle": SubResource("Animation_kjc67"),
-&"mixamo_com": SubResource("Animation_xd2os")
+&"flying": ExtResource("6_tyqtd"),
+&"jumping_up": ExtResource("3_3ad3n"),
+&"mixamo_com": SubResource("Animation_xd2os"),
+&"run_to_dive": ExtResource("2_xd2os"),
+&"skateboarding_idle": ExtResource("4_tyqtd"),
+&"skateboarding_push": ExtResource("5_cfulf")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xd2os"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_myu7f"]
 animation = &"falling_idle"
-advance_on_start = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kjc67"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p4xki"]
+animation = &"flying"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s8sjr"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cfulf"]
+animation = &"jumping_up"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0el3h"]
-states/End/position = Vector2(838, 126)
-states/Start/position = Vector2(232, 132)
-states/falling_idle/node = SubResource("AnimationNodeAnimation_xd2os")
-states/falling_idle/position = Vector2(445, 132)
-transitions = ["Start", "falling_idle", SubResource("AnimationNodeStateMachineTransition_kjc67"), "falling_idle", "End", SubResource("AnimationNodeStateMachineTransition_s8sjr")]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3ad3n"]
+animation = &"skateboarding_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tyqtd"]
+animation = &"skateboarding_push"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cfulf"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_myu7f"]
+advance_mode = 2
+advance_condition = &"isPushing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3ad3n"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"isIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p4xki"]
+advance_mode = 2
+advance_condition = &"isJumpStart"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_clj2a"]
+advance_mode = 2
+advance_condition = &"isJumpStart"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tyqtd"]
+advance_mode = 2
+advance_condition = &"isIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0xg71"]
+advance_mode = 2
+advance_condition = &"isPushing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_txehk"]
+switch_mode = 1
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nivem"]
+advance_mode = 2
+advance_condition = &"isFalling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e4dl5"]
+advance_mode = 2
+advance_condition = &"isFalling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l86m7"]
+advance_mode = 2
+advance_condition = &"isPushing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hq7vq"]
+advance_mode = 2
+advance_condition = &"isIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s77ip"]
+advance_mode = 2
+advance_condition = &"isDashing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mhjwe"]
+advance_mode = 2
+advance_condition = &"isFalling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_06lej"]
+advance_mode = 2
+advance_condition = &"isPushing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mqq05"]
+advance_mode = 2
+advance_condition = &"isIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wl0al"]
+advance_mode = 2
+advance_condition = &"isDashing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sti1t"]
+advance_mode = 2
+advance_condition = &"isDashing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1c7vw"]
+advance_mode = 2
+advance_condition = &"isDashing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3238e"]
+advance_mode = 2
+advance_condition = &"isJumpStart"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kjc67"]
+states/End/position = Vector2(1456, 131)
+states/falling_idle/node = SubResource("AnimationNodeAnimation_myu7f")
+states/falling_idle/position = Vector2(1005, -117)
+states/flying/node = SubResource("AnimationNodeAnimation_p4xki")
+states/flying/position = Vector2(616, -263)
+states/jumping_up/node = SubResource("AnimationNodeAnimation_cfulf")
+states/jumping_up/position = Vector2(257, -112)
+states/skateboarding_idle/node = SubResource("AnimationNodeAnimation_3ad3n")
+states/skateboarding_idle/position = Vector2(429, 108)
+states/skateboarding_push/node = SubResource("AnimationNodeAnimation_tyqtd")
+states/skateboarding_push/position = Vector2(736, 113)
+transitions = ["Start", "skateboarding_idle", SubResource("AnimationNodeStateMachineTransition_cfulf"), "skateboarding_idle", "skateboarding_push", SubResource("AnimationNodeStateMachineTransition_myu7f"), "skateboarding_push", "skateboarding_idle", SubResource("AnimationNodeStateMachineTransition_3ad3n"), "skateboarding_idle", "jumping_up", SubResource("AnimationNodeStateMachineTransition_p4xki"), "skateboarding_push", "jumping_up", SubResource("AnimationNodeStateMachineTransition_clj2a"), "jumping_up", "skateboarding_idle", SubResource("AnimationNodeStateMachineTransition_tyqtd"), "jumping_up", "skateboarding_push", SubResource("AnimationNodeStateMachineTransition_0xg71"), "jumping_up", "falling_idle", SubResource("AnimationNodeStateMachineTransition_txehk"), "skateboarding_idle", "falling_idle", SubResource("AnimationNodeStateMachineTransition_nivem"), "skateboarding_push", "falling_idle", SubResource("AnimationNodeStateMachineTransition_e4dl5"), "falling_idle", "skateboarding_push", SubResource("AnimationNodeStateMachineTransition_l86m7"), "falling_idle", "skateboarding_idle", SubResource("AnimationNodeStateMachineTransition_hq7vq"), "falling_idle", "flying", SubResource("AnimationNodeStateMachineTransition_s77ip"), "flying", "falling_idle", SubResource("AnimationNodeStateMachineTransition_mhjwe"), "flying", "skateboarding_push", SubResource("AnimationNodeStateMachineTransition_06lej"), "flying", "skateboarding_idle", SubResource("AnimationNodeStateMachineTransition_mqq05"), "skateboarding_idle", "flying", SubResource("AnimationNodeStateMachineTransition_wl0al"), "skateboarding_push", "flying", SubResource("AnimationNodeStateMachineTransition_sti1t"), "jumping_up", "flying", SubResource("AnimationNodeStateMachineTransition_1c7vw"), "flying", "jumping_up", SubResource("AnimationNodeStateMachineTransition_3238e")]
+graph_offset = Vector2(88, -330)
 
 [node name="X Bot" instance=ExtResource("1_s8sjr")]
 
 [node name="AnimationPlayer" parent="." index="1"]
+root_node = NodePath("../GeneralSkeleton")
 libraries = {
 &"": SubResource("AnimationLibrary_0el3h")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
-tree_root = SubResource("AnimationNodeStateMachine_0el3h")
+root_node = NodePath("%GeneralSkeleton")
+tree_root = SubResource("AnimationNodeStateMachine_kjc67")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/isDashing = false
+parameters/conditions/isFalling = false
+parameters/conditions/isIdle = false
+parameters/conditions/isJumpStart = false
+parameters/conditions/isPushing = false
