@@ -51,6 +51,10 @@ func _ready():
 	#%AnimationTree
 	main_scene.connect( "paused_state", Callable( self, "_on_paused_state") )
 	%PauseMenu.connect( "state_change", Callable(self, "_on_paused_state"))
+	
+	print("animation_tree :" , animation_tree)
+	print("$Char_FemaleA_01/AnimationTree" , $Char_FemaleA_01/AnimationTree)
+	#print("animation_tree.get" , animation_tree.get("parameters/StateMachine/playback"))
 
 # For movement -to- BlendSpace2D blend_position vec2
 #   X axis = left/right (-1 to 1)
@@ -123,7 +127,7 @@ func _process(delta):
 	else:
 		update_animation_parameters()
 		
-	print("current skateboard node: " , skatePlayback.get_current_node())		
+	#print("current skateboard node: " , skatePlayback.get_current_node())		
 
 func _unhandled_input(event: InputEvent) -> void:
 	if( is_paused ):
@@ -179,8 +183,8 @@ func _physics_process(delta: float) -> void:
 	# Move the character based on movement input.
 	if move_dir.length() > 0:
 		if is_on_skateboard:
-			velocity.x += move_dir.x * 0.5
-			velocity.z += move_dir.z * 0.5
+			velocity.x += move_dir.x * 0.3
+			velocity.z += move_dir.z * 0.3
 		else:
 			velocity.x = move_dir.x * current_speed
 			velocity.z = move_dir.z * current_speed
@@ -199,8 +203,8 @@ func _physics_process(delta: float) -> void:
 		
 	if is_on_skateboard:
 		# always slowly decelerate, if on skateboard:
-		velocity.x *= 0.975
-		velocity.z *= 0.975
+		velocity.x *= 0.985
+		velocity.z *= 0.985
 		
 		
 	if Input.is_action_just_pressed("ToggleSkateboard"):
@@ -214,25 +218,29 @@ func _physics_process(delta: float) -> void:
 	jump_in_progress = false 
 	if Input.is_action_just_pressed("Jump") and not jump_in_progress:		
 		if is_on_floor_var:
-			jump_in_progress = true 
-			is_pushing = false 
-			is_idle = false 			
+			jump_in_progress = true 		
 			velocity.y += jump_velocity
 		else:
 			if double_jump_enabled:
 				jump_in_progress = true 
-				is_pushing = false 
-				is_idle = false 	
 				velocity.y += jump_velocity
 				double_jump_enabled = false 
 				if is_on_skateboard:
 					skatePlayback.start("skateboard_jumping_up", true)
 				else:
 					walkPlayback.start("jump", true)
+	if jump_in_progress:
+		is_pushing = false 
+		is_idle = false 	
+		
 					
 					
 	if Input.is_action_just_pressed("Run"):
 		if	can_dash and is_on_skateboard:
+			
+			velocity.x = move_dir.x * SPEED_RUN*2
+			velocity.z = move_dir.z * SPEED_RUN*2
+						
 			can_dash = false 
 			is_dashing = true 
 			jump_in_progress = false
