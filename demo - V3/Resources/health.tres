@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ResourceFloat" load_steps=2 format=3 uid="uid://jroglmchqlv6"]
+
+[ext_resource type="Script" uid="uid://b7081dccm73bu" path="res://Scripts/resource_float.gd" id="1_subip"]
+
+[resource]
+script = ExtResource("1_subip")
+value = 0.0
+metadata/_custom_type_script = "uid://b7081dccm73bu"
