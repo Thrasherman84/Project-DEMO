@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://biwx2p0cao6q8"]
+
+[ext_resource type="Script" uid="uid://1h7npvdfsff6" path="res://Scripts/hud_manager.gd" id="1_xjlf2"]
+[ext_resource type="Script" uid="uid://bxm2p5kd3sqet" path="res://Scripts/ui_hud_timer.gd" id="2_r8uld"]
+[ext_resource type="PackedScene" uid="uid://7oyd0772eebq" path="res://Scenes/resource_label_display.tscn" id="3_3herd"]
+[ext_resource type="PackedScene" uid="uid://cstui24ujmvwb" path="res://Scenes/resource_progression_bar.tscn" id="4_drwp6"]
+
+[sub_resource type="SystemFont" id="SystemFont_1pscj"]
+subpixel_positioning = 0
+
+[sub_resource type="Theme" id="Theme_307ux"]
+default_base_scale = 1.0
+default_font = SubResource("SystemFont_1pscj")
+default_font_size = 60
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xjlf2")
+
+[node name="HUD Layout" type="CanvasLayer" parent="."]
+
+[node name="DeliveryTimer" type="Label" parent="HUD Layout"]
+offset_left = 28.0
+offset_top = 7.0
+offset_right = 267.0
+offset_bottom = 90.0
+theme = SubResource("Theme_307ux")
+text = "00:00:00"
+script = ExtResource("2_r8uld")
+
+[node name="AmmoCount" parent="HUD Layout" instance=ExtResource("3_3herd")]
+offset_left = 1070.0
+offset_top = 72.0
+offset_right = 1098.0
+offset_bottom = 95.0
+text = "100"
+
+[node name="Healthbar" parent="HUD Layout" instance=ExtResource("4_drwp6")]
+offset_left = 904.0
+offset_top = 27.0
+offset_right = 1104.0
+offset_bottom = 54.0
+
+[node name="AmmoLabel" type="Label" parent="HUD Layout"]
+offset_left = 1011.0
+offset_top = 71.0
+offset_right = 1067.0
+offset_bottom = 94.0
+text = "Ammo:"

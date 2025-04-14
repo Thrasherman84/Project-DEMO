@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://biq7tfort1cjx"]
+
+[ext_resource type="PackedScene" uid="uid://bspuy27uovohd" path="res://Objects/StreetAssets/_SourceFBXs/signScreenB.fbx" id="1_t1oky"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t1oky"]
+points = PackedVector3Array(-66.7005, -30.8616, -7.5968, 66.0792, 39.4905, -3.58737, 68.3454, 40.8714, -7.59473, 57.7834, -41.4221, -20.254, -60.3553, 40.8714, -13.9234, 57.7834, -41.4221, 0.846874, -56.1384, 40.8714, 0.846874, -56.1384, -41.4221, -20.254, 59.8985, 40.8714, -16.0322, -56.1384, -41.4221, 0.846874, 57.7834, 40.8714, 0.846874, 68.3454, -30.8696, -7.59473, -56.1384, -28.7511, -20.254, -65.052, 39.8669, -3.52946, 57.7834, -28.7511, -20.254, 19.8051, 40.8714, -16.0322, -66.7005, 40.8714, -7.5968, 66.0011, -29.8074, -3.59469, -64.3732, -29.8074, -3.59308)
+
+[node name="signScreenB" instance=ExtResource("1_t1oky")]
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="signScreenB_geo" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="signScreenB_geo/StaticBody3D2" index="0"]
+shape = SubResource("ConvexPolygonShape3D_t1oky")

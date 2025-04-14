@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://7oyd0772eebq"]
 
-[ext_resource type="Script" uid="uid://n4ij67wtvhwg" path="res://Scripts/resource_label_display.gd" id="1_phsa7"]
+[ext_resource type="Script" path="res://Scripts/resource_label_display.gd" id="1_phsa7"]
 [ext_resource type="Resource" uid="uid://typ1i1pyii0t" path="res://Resources/ammo_count.tres" id="2_cow57"]
 
 [node name="ResourceLabelDisplay" type="Label" node_paths=PackedStringArray("displayLabel")]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://nuo0ao1mewwv"]
+
+[ext_resource type="PackedScene" uid="uid://jf358b2dp0ox" path="res://Objects/StreetAssets/_SourceFBXs/newsStand.fbx" id="1_lsl0e"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ch3bm"]
+points = PackedVector3Array(2.19834, 29.8283, -21.2574, 17.9725, 31.8885, 19.1995, -9.45338, 31.8885, 21.9448, -4.65376, -0.342888, 14.3964, 11.286, 0.36933, -19.0039, -17.6808, 31.8885, -19.1952, 14.0247, 0.239116, 17.181, -7.39391, -0.342888, -14.3964, 13.8605, 31.2007, -21.9448, -14.253, 31.2007, 21.9448, 0.145852, 0.257064, 18.4848, -3.8163, 0.257427, -17.8226, 14.5447, 31.8885, -18.5122, 14.6166, 0.311289, 16.4459, -17.6808, 31.2007, -14.3964, 17.2883, 31.2007, 10.285, -3.65557, 0.88682, 17.7345, 4.94547, 29.8283, 20.57, 10.0402, 0.272039, -19.124, -6.88113, 0.753133, -16.6165, -14.253, 31.8885, 21.9448, -17.6808, 31.2007, -19.1952, 9.74509, 30.5161, -21.9448, 15.2289, 31.2007, -11.6555, 12.4887, 30.5161, 19.8826, -6.70975, -0.342888, -6.85238, -12.197, 31.2007, -19.8826, 17.9725, 31.2007, 17.8248, -9.45338, 31.2007, 21.9448, 14.5447, 31.2007, -18.5122, 13.5346, 31.5055, -21.4232, 17.9725, 31.2007, 19.1995)
+
+[node name="newsStand" instance=ExtResource("1_lsl0e")]
+
+[node name="newsStand_geo" parent="." index="0"]
+transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="newsStand_geo" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="newsStand_geo/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_ch3bm")
