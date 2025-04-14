@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_subip")
-value = 0.0
+value = 100.0
 metadata/_custom_type_script = "uid://b7081dccm73bu"
