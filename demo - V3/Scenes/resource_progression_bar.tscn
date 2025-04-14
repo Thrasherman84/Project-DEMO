@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cstui24ujmvwb"]
+
+[ext_resource type="Script" uid="uid://dk57x37mhsdca" path="res://Scripts/resource_progression_bar.gd" id="1_nn2nl"]
+[ext_resource type="Resource" uid="uid://jroglmchqlv6" path="res://Resources/health.tres" id="2_uv5ka"]
+[ext_resource type="Resource" uid="uid://bt7nf3tyt7600" path="res://Resources/max_health.tres" id="3_5q2ho"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uv5ka"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="ResourceProgressionBar" type="ProgressBar" node_paths=PackedStringArray("progressBarRange")]
+custom_minimum_size = Vector2(200, 0)
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 115.0
+offset_bottom = 42.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_uv5ka")
+value = 45.0
+script = ExtResource("1_nn2nl")
+resourceCurrent = ExtResource("2_uv5ka")
+resourceMax = ExtResource("3_5q2ho")
+progressBarRange = NodePath(".")
