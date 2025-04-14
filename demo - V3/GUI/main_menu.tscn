@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://dvk8q46en5w4e"]
+
+[ext_resource type="Script" uid="uid://bat03sme7hgkn" path="res://Scripts/main_root.gd" id="1_s7n8e"]
+[ext_resource type="PackedScene" uid="uid://s3yawtfx8mv8" path="res://main_menu_screen.tscn" id="2_w0c01"]
+[ext_resource type="PackedScene" uid="uid://0rs3b7i7kwwq" path="res://Scenes/SingleStreet_scene_timeOut.tscn" id="4_ibxkv"]
+[ext_resource type="PackedScene" uid="uid://dcchxt3rkxojr" path="res://GUI/pause_screen.tscn" id="5_bfvk1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a4h74"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3mjdq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ayyf6"]
+sky_top_color = Color(0.510505, 0.583795, 0.718435, 1)
+sky_horizon_color = Color(0.59694, 0.791867, 0.847104, 1)
+ground_bottom_color = Color(0.191498, 0.169159, 0.162641, 1)
+sun_angle_max = 38.89
+
+[sub_resource type="Sky" id="Sky_sm51x"]
+sky_material = SubResource("ProceduralSkyMaterial_ayyf6")
+
+[sub_resource type="Environment" id="Environment_ayyf6"]
+background_mode = 2
+sky = SubResource("Sky_sm51x")
+ambient_light_source = 3
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1237
+volumetric_fog_albedo = Color(0.890196, 1, 1, 1)
+
+[node name="Main Root" type="Node3D"]
+script = ExtResource("1_s7n8e")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.3761, 0)
+light_energy = 7.857
+omni_range = 49.736
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(60, 0, 0, 0, 1, 0, 0, 0, 60, 0, 0, 0)
+mesh = SubResource("BoxMesh_a4h74")
+skeleton = NodePath("StaticBody3D/CollisionShape3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_3mjdq")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ayyf6")
+
+[node name="mainmenu" parent="." instance=ExtResource("2_w0c01")]
+
+[node name="PauseMenu" parent="mainmenu" index="1"]
+starting_scene = ExtResource("4_ibxkv")
+
+[node name="PauseMenu" parent="." instance=ExtResource("5_bfvk1")]
+starting_scene = "res://Scenes/TownSquare_scene.tscn"
+
+[editable path="mainmenu"]
+[editable path="mainmenu/PauseMenu"]
+[editable path="PauseMenu"]

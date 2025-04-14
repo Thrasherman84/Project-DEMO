@@ -1,9 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvk8q46en5w4e"]
+[gd_scene load_steps=8 format=3 uid="uid://b7dvsmmt8jjqm"]
 
-[ext_resource type="Script" uid="uid://bat03sme7hgkn" path="res://Scripts/main_root.gd" id="1_db3k1"]
-[ext_resource type="PackedScene" uid="uid://s3yawtfx8mv8" path="res://GUI/main_menu_screen.tscn" id="5_3n4xu"]
-[ext_resource type="PackedScene" uid="uid://0rs3b7i7kwwq" path="res://Scenes/SingleStreet_scene_timeOut.tscn" id="6_dlksc"]
-[ext_resource type="PackedScene" uid="uid://dcchxt3rkxojr" path="res://GUI/pause_screen.tscn" id="6_hhvaw"]
+[ext_resource type="Script" uid="uid://bat03sme7hgkn" path="res://Scripts/main_root.gd" id="1_48xlc"]
+[ext_resource type="PackedScene" uid="uid://dcchxt3rkxojr" path="res://GUI/pause_screen.tscn" id="2_1ehe0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_a4h74"]
 
@@ -27,7 +25,7 @@ volumetric_fog_density = 0.1237
 volumetric_fog_albedo = Color(0.890196, 1, 1, 1)
 
 [node name="Main Root" type="Node3D"]
-script = ExtResource("1_db3k1")
+script = ExtResource("1_48xlc")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.3761, 0)
@@ -47,13 +45,6 @@ shape = SubResource("BoxShape3D_3mjdq")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ayyf6")
 
-[node name="mainmenu" parent="." instance=ExtResource("5_3n4xu")]
+[node name="PauseMenu" parent="." instance=ExtResource("2_1ehe0")]
 
-[node name="PauseMenu" parent="mainmenu" index="1"]
-starting_scene = ExtResource("6_dlksc")
-
-[node name="PauseMenu" parent="." instance=ExtResource("6_hhvaw")]
-
-[editable path="mainmenu"]
-[editable path="mainmenu/PauseMenu"]
 [editable path="PauseMenu"]

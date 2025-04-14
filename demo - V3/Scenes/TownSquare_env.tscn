@@ -1,49 +1,66 @@
-[gd_scene load_steps=5 format=3 uid="uid://byhfhkcqscyks"]
+[gd_scene load_steps=7 format=3 uid="uid://boer7pcrrytrq"]
 
-[ext_resource type="PackedScene" uid="uid://boy4jylwj8vdb" path="res://Objects/Buildings/_SourceFBXs/building_clusterA_small.fbx" id="1_2rjlf"]
-[ext_resource type="PackedScene" uid="uid://cnl40cfkrcs4s" path="res://Objects/Buildings/_SourceFBXs/building_clusterB_tall.fbx" id="2_njrxp"]
-[ext_resource type="PackedScene" uid="uid://cnmg0573uytpc" path="res://Objects/Buildings/_SourceFBXs/building_clusterC_small.fbx" id="3_hrvw1"]
-[ext_resource type="PackedScene" uid="uid://bvvsersquinob" path="res://Objects/Buildings/_SourceFBXs/building_clusterD_medium.fbx" id="4_uti83"]
+[ext_resource type="PackedScene" uid="uid://d0whf2op8a7pg" path="res://Objects/Buildings/building_cluster_a_small.tscn" id="1_78q0y"]
+[ext_resource type="PackedScene" uid="uid://cn03tf367xnfv" path="res://Objects/Buildings/building_cluster_b_tall.tscn" id="2_7j0im"]
+[ext_resource type="PackedScene" uid="uid://6pjpcnhp47nl" path="res://Objects/Buildings/building_cluster_c_small.tscn" id="3_q5rk4"]
+[ext_resource type="PackedScene" uid="uid://cwcut0pcpexai" path="res://Objects/Buildings/building_cluster_d_medium.tscn" id="4_kdct0"]
 
-[node name="SingleStreetTimeOut" type="Node3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_aursp"]
 
-[node name="Timer" type="Timer" parent="."]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ommyd"]
+albedo_color = Color(0.241156, 0.241156, 0.241156, 1)
 
-[node name="building_clusterA_small" parent="." instance=ExtResource("1_2rjlf")]
-transform = Transform3D(-0.0610959, 0, 2.22485, 0, 2.22569, 0, -2.22485, 0, -0.0610959, 10.4659, 0, 3.23808)
+[node name="TownSquare_env" type="Node3D"]
 
-[node name="building_clusterB_tall" parent="." instance=ExtResource("2_njrxp")]
-transform = Transform3D(-2.2194, 0, -0.167151, 0, 2.22569, 0, 0.167151, 0, -2.2194, -4.92528, 0, 18.3232)
+[node name="building_clusterA_small2" parent="." instance=ExtResource("1_78q0y")]
+transform = Transform3D(-0.0304883, 0, 7.9413, 0, 7.94136, 0, -7.9413, 0, -0.0304883, -46.7093, 0.0943981, -164.037)
 
-[node name="building_clusterC_small" parent="." instance=ExtResource("3_hrvw1")]
-transform = Transform3D(2.22569, 0, 0, 0, 2.22569, 0, 0, 0, 2.22569, -7.4037, 0, -0.80489)
+[node name="building_clusterC_small3" parent="." instance=ExtResource("3_q5rk4")]
+transform = Transform3D(0.10575, 0, -7.94063, 0, 7.94136, 0, 7.94063, 0, 0.10575, -45.6153, 0.0405607, -105.296)
 
-[node name="building_clusterD_medium" parent="." instance=ExtResource("4_uti83")]
-transform = Transform3D(0.0429187, 0, -1.5394, 0, 1.54, 0, 1.5394, 0, 0.0429187, 5.1588, 0, -17.2941)
+[node name="building_clusterD_medium" parent="." instance=ExtResource("4_kdct0")]
+transform = Transform3D(0.153136, 0, -5.49265, 0, 5.49477, 0, 5.49265, 0, 0.153136, 5.96445, -0.699847, -102.876)
 
-[node name="building_clusterC_small2" parent="." instance=ExtResource("3_hrvw1")]
-transform = Transform3D(2.89555, 0, 0.414006, 0, 2.925, 0, -0.414006, 0, 2.89555, 6.70169, 0, 28.1825)
+[node name="building_clusterA_small" parent="." instance=ExtResource("1_78q0y")]
+transform = Transform3D(0.564473, 0, 7.92127, 0, 7.94136, 0, -7.92127, 0, 0.564473, 30.8531, 0.0943981, -35.3957)
 
-[node name="building_clusterC_small3" parent="." instance=ExtResource("3_hrvw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6782, 0, -12.2165)
+[node name="building_clusterC_small" parent="." instance=ExtResource("3_q5rk4")]
+transform = Transform3D(8.13322, 0, -0.293718, 0, 8.12401, 0, 0.294534, 0, 8.1106, -33.7665, 0, -39.4914)
 
-[node name="building_clusterD_medium2" parent="." instance=ExtResource("4_uti83")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.5354, 0, -3.14907)
+[node name="building_clusterB_tall" parent="." instance=ExtResource("2_7j0im")]
+transform = Transform3D(-7.65964, 0, 2.09631, 0, 7.94136, 0, -2.09631, 0, -7.65964, -26.4267, 0, 7.05914)
 
-[node name="building_clusterC_small4" parent="." instance=ExtResource("3_hrvw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.341, 0, -20.0833)
+[node name="building_clusterD_medium5" parent="." instance=ExtResource("4_kdct0")]
+transform = Transform3D(0.273974, 0, -5.48795, 0, 5.49477, 0, 5.48795, 0, 0.273974, -48.4973, -0.699847, 22.2633)
 
-[node name="building_clusterA_small2" parent="." instance=ExtResource("1_2rjlf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5284, 0, -11.464)
+[node name="building_clusterB_tall3" parent="." instance=ExtResource("2_7j0im")]
+transform = Transform3D(-7.89528, 0, -0.853932, 0, 7.94136, 0, 0.853932, 0, -7.89528, 63.5025, 0, -2.54907)
 
-[node name="building_clusterC_small5" parent="." instance=ExtResource("3_hrvw1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.3986, 0, 8.20708)
+[node name="building_clusterD_medium4" parent="." instance=ExtResource("4_kdct0")]
+transform = Transform3D(8.28312, 0, 1.40173, 0, 8.40088, 0, -1.40173, 0, 8.28312, 82.5055, 0.611312, 43.2237)
 
-[node name="building_clusterD_medium3" parent="." instance=ExtResource("4_uti83")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9299, 0, 0.773392)
+[node name="building_clusterC_small4" parent="." instance=ExtResource("3_q5rk4")]
+transform = Transform3D(10.3314, 0, 1.47719, 0, 10.4365, 0, -1.47719, 0, 10.3314, 19.4521, 0, 52.4902)
 
-[node name="building_clusterB_tall2" parent="." instance=ExtResource("2_njrxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.67, 0, 10.6984)
+[node name="building_clusterC_small2" parent="." instance=ExtResource("3_q5rk4")]
+transform = Transform3D(-7.92281, 0, -0.542345, 0, 7.94136, 0, 0.542345, 0, -7.92281, -36.9864, 0.0405607, 65.8124)
 
-[node name="building_clusterB_tall3" parent="." instance=ExtResource("2_njrxp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5012, 0, -7.91162)
+[node name="building_clusterD_medium2" parent="." instance=ExtResource("4_kdct0")]
+transform = Transform3D(-1.43699, 0, 8.27707, 0, 8.40088, 0, -8.27707, 0, -1.43699, -63.942, 0.611308, 128.017)
+
+[node name="building_clusterD_medium3" parent="." instance=ExtResource("4_kdct0")]
+transform = Transform3D(8.26694, 0, 1.49416, 0, 8.40088, 0, -1.49416, 0, 8.26694, 38.1885, 0.611312, 102.496)
+
+[node name="building_clusterB_tall2" parent="." instance=ExtResource("2_7j0im")]
+transform = Transform3D(-6.25853, 0, 4.8883, 0, 7.94136, 0, -4.8883, 0, -6.25853, 10.004, 0, 154.196)
+
+[node name="building_clusterC_small5" parent="." instance=ExtResource("3_q5rk4")]
+transform = Transform3D(0.79305, 0, -10.4063, 0, 10.4365, 0, 10.4063, 0, 0.79305, -22.7912, 0, 162.677)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(397.677, 0, 2.40896, 0, 2.8891, 0, -2.40163, 0, 398.914, -125.106, -0.29201, -36.6075)
+use_collision = true
+collision_layer = 5
+collision_mask = 5
+mesh = SubResource("BoxMesh_aursp")
+material = SubResource("StandardMaterial3D_ommyd")
