@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://0rs3b7i7kwwq"]
+[gd_scene load_steps=17 format=3 uid="uid://0rs3b7i7kwwq"]
 
 [ext_resource type="Script" uid="uid://o48xowwl48tf" path="res://Scripts/scene_base.gd" id="1_lf4oi"]
 [ext_resource type="PackedScene" uid="uid://m0dfoft5snt4" path="res://Scenes/tests/delivery_route.tscn" id="1_m6mcv"]
@@ -8,8 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dcchxt3rkxojr" path="res://GUI/pause_screen.tscn" id="6_40heh"]
 [ext_resource type="Script" uid="uid://1h7npvdfsff6" path="res://Scripts/hud_manager.gd" id="7_lf4oi"]
 [ext_resource type="Script" uid="uid://bxm2p5kd3sqet" path="res://Scripts/ui_hud_timer.gd" id="8_1pscj"]
-[ext_resource type="PackedScene" uid="uid://7oyd0772eebq" path="res://Scenes/resource_label_display.tscn" id="9_seook"]
-[ext_resource type="PackedScene" uid="uid://cstui24ujmvwb" path="res://Scenes/resource_progression_bar.tscn" id="10_40heh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_slmxa"]
 transparency = 1
@@ -58,28 +56,22 @@ debug_mode = true
 [node name="Delivery Route 1" parent="Delivery Routes" node_paths=PackedStringArray("player", "path_checkpoints") instance=ExtResource("1_m6mcv")]
 transform = Transform3D(-0.99992, 0, -0.0126708, 0, 1, 0, 0.0126708, 0, -0.99992, 0, 0, 0)
 player = NodePath("../../Player")
+
 path_checkpoints = [NodePath("StartArea"), NodePath("Area2"), NodePath("FinishArea")]
 debug_material = SubResource("StandardMaterial3D_slmxa")
 
 [node name="StartArea" type="Area3D" parent="Delivery Routes/Delivery Route 1"]
-transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 3.45392, 1.87263, -46.978)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.45392, 0, -46.978)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Delivery Routes/Delivery Route 1/StartArea"]
-transform = Transform3D(-0.264938, 0, -0.964265, 0, 1, 0, 0.964265, 0, -0.264938, 0, 0, 0)
-shape = SubResource("BoxShape3D_p1iqb")
-
-[node name="Area2" type="Area3D" parent="Delivery Routes/Delivery Route 1"]
-transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 1.98413, 1.87263, 69.0106)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Delivery Routes/Delivery Route 1/Area2"]
-transform = Transform3D(-0.264938, 0, -0.964265, 0, 1, 0, 0.964265, 0, -0.264938, 0, 0, 0)
+transform = Transform3D(-10.6439, 0, -38.7394, 0, 40.175, 0, 38.7394, 0, -10.6439, 0, 0, 0)
 shape = SubResource("BoxShape3D_p1iqb")
 
 [node name="FinishArea" type="Area3D" parent="Delivery Routes/Delivery Route 1"]
-transform = Transform3D(24, 0, 0, 0, 24, 0, 0, 0, 24, 44.6548, 0, 71.7624)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.6548, 0, 71.7624)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Delivery Routes/Delivery Route 1/FinishArea"]
-transform = Transform3D(0.992612, 0, -0.121333, 0, 1, 0, 0.121333, 0, 0.992612, 0, 0, 0)
+transform = Transform3D(23.649, 0, -2.89076, 0, 23.825, 0, 2.89076, 0, 23.649, 0, 0, 0)
 shape = SubResource("BoxShape3D_p1iqb")
 
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("animation_tree")]
@@ -199,25 +191,5 @@ offset_bottom = 90.0
 theme = SubResource("Theme_307ux")
 text = "00:00:00"
 script = ExtResource("8_1pscj")
-
-[node name="AmmoCount" parent="HUD/HUD Layout" instance=ExtResource("9_seook")]
-offset_left = 1070.0
-offset_top = 72.0
-offset_right = 1098.0
-offset_bottom = 95.0
-text = "100"
-
-[node name="Healthbar" parent="HUD/HUD Layout" instance=ExtResource("10_40heh")]
-offset_left = 904.0
-offset_top = 27.0
-offset_right = 1104.0
-offset_bottom = 54.0
-
-[node name="AmmoLabel" type="Label" parent="HUD/HUD Layout"]
-offset_left = 1011.0
-offset_top = 71.0
-offset_right = 1067.0
-offset_bottom = 94.0
-text = "Ammo:"
 
 [editable path="Player/Char_FemaleA_01"]

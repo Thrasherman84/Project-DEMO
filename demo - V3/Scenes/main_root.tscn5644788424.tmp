@@ -1,10 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://u6cx8pt1ulbr"]
+[gd_scene load_steps=24 format=3 uid="uid://u6cx8pt1ulbr"]
 
-[ext_resource type="Script" uid="uid://bat03sme7hgkn" path="res://Scripts/main_root.gd" id="1_2fi8t"]
 [ext_resource type="Script" uid="uid://bakalvvkpi5m" path="res://Scripts/character_body_3d.gd" id="2_0u131"]
 [ext_resource type="Material" uid="uid://dqswpeiqmp3bu" path="res://Materials/main_root.tres" id="2_p7klq"]
 [ext_resource type="PackedScene" uid="uid://jpgcqqswv7rl" path="res://Characters/char_female_a_01.tscn" id="5_apg1r"]
-[ext_resource type="PackedScene" uid="uid://dcchxt3rkxojr" path="res://GUI/pause_screen.tscn" id="6_0u131"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_a4h74"]
 
@@ -58,10 +56,10 @@ states/jump/position = Vector2(726.333, 109)
 states/run/node = SubResource("AnimationNodeAnimation_jp31p")
 states/run/position = Vector2(549.333, -48.1905)
 transitions = ["run", "jump", SubResource("AnimationNodeStateMachineTransition_r7alx"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_4yvv8"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_semdt"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_jtwky"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_7d66v"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_di1ja"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_h4n5u")]
-graph_offset = Vector2(-3.667, -141.19)
+graph_offset = Vector2(11.333, -98.19)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sofaw"]
-graph_offset = Vector2(-109, 234)
+graph_offset = Vector2(-18, 129)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_b6kc4")
 nodes/StateMachine/position = Vector2(284, 190)
 nodes/output/position = Vector2(660, 180)
@@ -92,7 +90,6 @@ volumetric_fog_emission = Color(1, 1, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_yeix8"]
 
 [node name="Main Root2" type="Node3D"]
-script = ExtResource("1_2fi8t")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 108.63, 0)
@@ -147,6 +144,8 @@ shape = SubResource("CapsuleShape3D_pwibu")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -2.37331, 0.751749)
 
 [node name="GeneralSkeleton" parent="Player/Char_FemaleA_01" index="0"]
+
+
 bones/1/rotation = Quaternion(0.00971627, -0.010639, 0.0259841, 0.999559)
 bones/2/rotation = Quaternion(0.0034416, 0.00169168, 0.0518258, 0.998649)
 bones/3/rotation = Quaternion(0.00349289, 0.00648067, 0.0510432, 0.998669)
@@ -206,8 +205,6 @@ transform = Transform3D(0.995354, -0.0830346, 0.0487423, 0.0858974, 0.994501, -0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ayyf6")
 
-[node name="PauseMenu" parent="." instance=ExtResource("6_0u131")]
-
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.565, 0, 0, 0, 2.70463, 0.883766, 0, -5.10817, 0.46793, 1.31, 0.692, 0)
 mesh = SubResource("BoxMesh_ohry6")
@@ -237,5 +234,7 @@ surface_material_override/0 = ExtResource("2_p7klq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/StaticBody3D"]
 shape = SubResource("BoxShape3D_yeix8")
+
+[connection signal="timeout" from="Player/DashAnimationTimer" to="Player" method="_on_dash_animation_timer_timeout"]
 
 [editable path="Player/Char_FemaleA_01"]
