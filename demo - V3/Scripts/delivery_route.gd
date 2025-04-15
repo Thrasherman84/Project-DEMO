@@ -19,17 +19,32 @@ var debug_mode = false
 @export
 var debug_material: StandardMaterial3D
 
+var arrow = preload("res://Objects/Arrow.fbx")
+
 func _ready() -> void:
 	path_checkpoints[current_checkpoint_id].body_entered.connect(checkpointReached.bind())
 	
-	if(debug_mode == true):
-		for checkpoint in path_checkpoints:
+	for i in path_checkpoints.size():
+		if(i != path_checkpoints.size() - 1):
+			var arrowInstance = arrow.instantiate()
+			var currentPosition = path_checkpoints[i].global_position
+			var nextPosition = path_checkpoints[i + 1].global_position
+			var angle = (Vector2(nextPosition.x, nextPosition.z) - Vector2(currentPosition.x, currentPosition.z)).angle()
+			
+			arrowInstance.rotate(Vector3.DOWN, angle)
+			
+			arrowInstance.scale /= path_checkpoints[i].scale
+			
+			path_checkpoints[i].add_child(arrowInstance)
+	
+	for checkpoint in path_checkpoints:
+		if(debug_mode == true):
 			var debug_mesh = MeshInstance3D.new()
-			
+		
 			debug_mesh.mesh = BoxMesh.new()
-			
+		
 			debug_mesh.set_surface_override_material(0, debug_material)
-			
+		
 			checkpoint.add_child(debug_mesh)
 
 func checkpointReached(bodyEntered: Node3D):

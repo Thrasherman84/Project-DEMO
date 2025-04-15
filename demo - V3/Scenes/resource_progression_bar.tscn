@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cstui24ujmvwb"]
 
-[ext_resource type="Script" path="res://Scripts/resource_progression_bar.gd" id="1_nn2nl"]
+[ext_resource type="Script" uid="uid://dk57x37mhsdca" path="res://Scripts/resource_progression_bar.gd" id="1_nn2nl"]
 [ext_resource type="Resource" uid="uid://jroglmchqlv6" path="res://Resources/health.tres" id="2_uv5ka"]
 [ext_resource type="Resource" uid="uid://bt7nf3tyt7600" path="res://Resources/max_health.tres" id="3_5q2ho"]
 

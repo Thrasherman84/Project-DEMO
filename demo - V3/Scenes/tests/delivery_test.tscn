@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://n0qtjvg1t71m"]
 
-[ext_resource type="PackedScene" uid="uid://m0dfoft5snt4" path="res://Scenes/tests/delivery_route.tscn" id="1_16tlq"]
+[ext_resource type="PackedScene" uid="uid://m0dfoft5snt4" path="res://Scenes/delivery_route.tscn" id="1_16tlq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16tlq"]
 transparency = 1
@@ -17,18 +17,36 @@ albedo_color = Color(1, 0, 0, 0.580392)
 [node name="Delivery Route" parent="." node_paths=PackedStringArray("player", "path_checkpoints") instance=ExtResource("1_16tlq")]
 transform = Transform3D(-0.99992, 0, -0.0126708, 0, 1, 0, 0.0126708, 0, -0.99992, 0, 0, 0)
 player = NodePath("../Player")
-path_checkpoints = [NodePath("StartArea"), NodePath("FinishArea")]
+path_checkpoints = [NodePath("StartArea"), NodePath("MiddleArea"), NodePath("MiddleArea2"), NodePath("MiddleArea3"), NodePath("FinishArea")]
 debug_mode = true
 debug_material = SubResource("StandardMaterial3D_16tlq")
 
 [node name="StartArea" type="Area3D" parent="Delivery Route"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26334, 0, 0.0286807)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.79539, 0, 0.111454)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Delivery Route/StartArea"]
 shape = SubResource("BoxShape3D_602x0")
 
+[node name="MiddleArea" type="Area3D" parent="Delivery Route"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2895, 0, -0.143059)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Delivery Route/MiddleArea"]
+shape = SubResource("BoxShape3D_602x0")
+
+[node name="MiddleArea2" type="Area3D" parent="Delivery Route"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3882, 0, 12.2479)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Delivery Route/MiddleArea2"]
+shape = SubResource("BoxShape3D_602x0")
+
+[node name="MiddleArea3" type="Area3D" parent="Delivery Route"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.82649, 0, 14.4367)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Delivery Route/MiddleArea3"]
+shape = SubResource("BoxShape3D_602x0")
+
 [node name="FinishArea" type="Area3D" parent="Delivery Route"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.36754, 0, -0.0426728)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.766, 0, 27.3666)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Delivery Route/FinishArea"]
 shape = SubResource("BoxShape3D_602x0")
@@ -58,6 +76,6 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_isl1w")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.29434)
+transform = Transform3D(1, 0, 0, 0, 0.947785, 0.31891, 0, -0.31891, 0.947785, 0, 8.16732, 10.03)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
