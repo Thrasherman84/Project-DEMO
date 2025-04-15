@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgcokwjseiaqh"]
+[gd_scene load_steps=7 format=3 uid="uid://bgcokwjseiaqh"]
 
 [ext_resource type="PackedScene" uid="uid://nuo0ao1mewwv" path="res://Objects/StreetAssets/news_stand.tscn" id="1_iprig"]
 [ext_resource type="PackedScene" uid="uid://cqt3u5in2dier" path="res://Objects/StreetAssets/sign_screen_a.tscn" id="2_ejnqs"]
 [ext_resource type="PackedScene" uid="uid://biq7tfort1cjx" path="res://Objects/StreetAssets/sign_screen_b.tscn" id="3_7javb"]
 [ext_resource type="PackedScene" uid="uid://bxvnsakfvq278" path="res://Objects/StreetAssets/sign_screen_c.tscn" id="4_bjo6j"]
 [ext_resource type="PackedScene" uid="uid://csp38yo0bj5wp" path="res://Objects/StreetAssets/stop_light_post.tscn" id="5_pfc7p"]
+[ext_resource type="PackedScene" uid="uid://bam7m4lkkwv6w" path="res://Objects/StreetAssets/trash_can_closed_lid.tscn" id="6_ejnqs"]
 
 [node name="StreetAssets" type="Node3D"]
 
@@ -22,3 +23,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.54342, 3.42702, 3.15518)
 
 [node name="stopLightPost" parent="." instance=ExtResource("5_pfc7p")]
 transform = Transform3D(0.565845, 0, 0.824512, 0, 1, 0, -0.824512, 0, 0.565845, -9.81273, 0, 1.48803)
+
+[node name="TrashCan_ClosedLid" parent="." instance=ExtResource("6_ejnqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9528, 0, 0.888655)
